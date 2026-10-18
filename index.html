@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#073b2c">
+<title>VERANO | فروشگاه اختصاصی</title>
+<style>
+:root {
+  --green:#073b2c;
+  --green2:#0d5940;
+  --gold:#d8b56d;
+  --cream:#f8f5ed;
+  --ink:#202a25;
+  --muted:#737b74;
+  --white:#fff;
+}
+* {box-sizing:border-box}
+body {
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+}
+a {color:inherit;text-decoration:none}
+button,input,select {font:inherit}
+button {cursor:pointer}
+.topbar {
+  background:#04291f;
+  color:#f8e8bf;
+  text-align:center;
+  padding:9px;
+  font-size:12px;
+}
+header {
+  background:var(--green);
+  color:white;
+  padding:20px 5%;
+  border-bottom:3px solid var(--gold);
+}
+.brand {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap;
+}
+.logo {
+  width:54px;height:54px;
+  border:2px solid var(--gold);
+  border-radius:50%;
+  display:grid;place-items:center;
+  color:var(--gold);
+  font-size:24px;
+}
+.brandname {display:flex;align-items:center;gap:12px}
+.brandname h1 {font-size:20px;margin:0 0 7px}
+.brandname p {font-size:11px;margin:0;color:#dfd4b6}
+.cart {
+  border:1px solid var(--gold);
+  background:transparent;color:white;
+  padding:11px 15px;border-radius:8px;
+}
+.searchbox {
+  display:flex;gap:8px;margin-top:20px;
+}
+.searchbox input {
+  flex:1;min-width:0;
+  padding:13px;border:0;border-radius:8px;
+  outline-color:var(--gold);
+}
+.searchbox button {
+  background:var(--gold);color:#18251d;
+  border:0;border-radius:8px;padding:0 18px;
+}
+nav {
+  display:flex;gap:10px;overflow:auto;
+  padding:12px 5%;background:white;
+  border-bottom:1px solid #e8e1d3;
+}
+nav a {
+  white-space:nowrap;font-size:12px;
+  padding:9px 13px;border-radius:20px;
+  background:#f2eee3;
+}
+main {max-width:1200px;margin:auto;padding:20px 4%}
+.hero {
+  background:linear-gradient(120deg,#073b2c,#126345);
+  color:white;border-radius:18px;
+  padding:32px 22px;margin:8px 0 25px;
+  position:relative;overflow:hidden;
+}
+.hero:after {
+  content:"✦";position:absolute;
+  left:20px;top:8px;font-size:100px;
+  color:#d8b56d22;
+}
+.eyebrow {color:var(--gold);font-size:12px}
+.hero h2 {font-size:28px;line-height:1.8;margin:12px 0}
+.hero p {font-size:13px;line-height:2;color:#e4eee7}
+.goldbtn {
+  background:var(--gold);border:0;
+  border-radius:7px;padding:12px 18px;
+  color:#15271d;font-weight:bold;
+}
+.sectionhead {
+  display:flex;align-items:center;
+  justify-content:space-between;gap:10px;
+  margin:28px 0 15px;
+}
+.sectionhead h2 {font-size:19px;margin:0}
+.sectionhead span {font-size:11px;color:var(--muted)}
+.categories {
+  display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
+}
+.category {
+  border:1px solid #e7e0d2;background:white;
+  padding:15px 5px;border-radius:12px;
+  text-align:center;min-width:0;
+}
+.category .emoji {font-size:27px}
+.category strong {display:block;font-size:12px;margin-top:8px}
+.category small {display:block;color:var(--muted);font-size:10px;margin-top:5px}
+.ad {
+  margin:25px 0;padding:18px;
+  border:1px dashed #b48b3f;
+  border-radius:13px;background:#f3e9d2;
+}
+.adlabel {font-size:10px;color:#795b25}
+.ad h3 {font-size:16px;margin:9px 0}
+.ad p {font-size:12px;line-height:2;color:#66563b}
+.ad button {
+  border:0;background:var(--green);color:white;
+  padding:10px 15px;border-radius:7px;
+}
+.toolbar {display:flex;gap:8px;flex-wrap:wrap}
+.toolbar select {
+  padding:9px;border:1px solid #ded8cb;
+  border-radius:8px;background:white;max-width:100%;
+}
+.products {
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;
+}
+.product {
+  background:white;border:1px solid #ebe5d9;
+  border-radius:13px;overflow:hidden;
+}
+.productvisual {
+  height:125px;display:grid;place-items:center;
+  background:linear-gradient(135deg,#eee6d5,#faf8f1);
+  font-size:53px;
+}
+.productbody {padding:12px}
+.productbody h3 {font-size:13px;margin:0 0 8px}
+.productbody p {font-size:11px;color:var(--muted);line-height:1.8}
+.price {font-weight:bold;color:var(--green);font-size:14px}
+.oldprice {font-size:10px;color:#999;text-decoration:line-through;margin-right:5px}
+.badge {
+  display:inline-block;background:#e7f1e9;
+  color:#20613f;padding:5px 7px;
+  border-radius:5px;font-size:10px;margin-bottom:8px;
+}
+.add {
+  width:100%;margin-top:12px;
+  padding:10px 5px;border:0;border-radius:7px;
+  background:var(--green);color:white;font-size:12px;
+}
+footer {
+  background:#04291f;color:white;
+  padding:28px 6%;margin-top:35px;
+}
+footer h3 {color:var(--gold)}
+footer p {font-size:12px;line-height:2;color:#d7e0d8}
+.notice {font-size:11px;color:#b9c8bd}
+.empty {
+  grid-column:1/-1;text-align:center;
+  padding:25px;background:white;border-radius:12px;
+}
+@media(min-width:650px) {
+  .products {grid-template-columns:repeat(4,minmax(0,1fr))}
+  .categories {grid-template-columns:repeat(6,1fr)}
+  .hero {padding:48px}
+  .hero h2 {font-size:36px}
+  .productvisual {height:165px}
+}
+</style>
+</head>
+<body>
+<div class="topbar">تجربه‌ای متفاوت از خرید آنلاین | ویژه مشتریان ایران</div>
+
+<header>
+  <div class="brand">
+    <div class="brandname">
+      <div class="logo">ب‌ک</div>
+      <div>
+        <h1>VERANO</h1>
+        <p>انتخابی خاص، برای سلیقه‌ای خاص</p>
+      </div>
+    </div>
+    <button class="cart" id="cartButton">🛒 سبد خرید (<span id="cartCount">۰</span>)</button>
+  </div>
+  <form class="searchbox" id="searchForm">
+    <input id="searchInput" placeholder="جست‌وجوی محصول، برند یا دسته‌بندی..." aria-label="جست‌وجوی محصولات">
+    <button type="submit">جست‌وجو</button>
+  </form>
+</header>
+
+<nav>
+  <a href="#categories">دسته‌بندی‌ها</a>
+  <a href="#products">محصولات</a>
+  <a href="#ads">تبلیغات ویژه</a>
+  <a href="#about">درباره ما</a>
+  <a href="#contact">تماس با ما</a>
+</nav>
+
+<main>
+  <section class="hero">
+    <span class="eyebrow">BRAND • QUALITY • STYLE</span>
+    <h2>خریدی فراتر از انتظار</h2>
+    <p>از استایل و زیبایی تا عطر قهوه و لوازم زندگی؛ انتخاب‌های متنوع در یک فروشگاه.</p>
+    <button class="goldbtn" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'})">کشف دنیای محصولات ←</button>
+  </section>
+
+  <section id="categories">
+    <div class="sectionhead">
+      <h2>دسته‌بندی‌های فروشگاه</h2>
+      <span>همه انتخاب‌ها، یک‌جا</span>
+    </div>
+    <div class="categories" id="categoryList"></div>
+  </section>
+
+  <section class="ad" id="ads">
+    <span class="adlabel">✦ جایگاه تبلیغاتی ویژه</span>
+    <h3 id="adTitle">محصول منتخب خود را معرفی کنید</h3>
+    <p id="adText">تبلیغات مرتبط با هر دسته در همین بخش نمایش داده می‌شود. فعلاً این جایگاه نمونه است و از پنل مدیریت واقعی تغذیه نمی‌شود.</p>
+    <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">مشاهده محصولات</button>
+  </section>
+
+  <section id="products">
+    <div class="sectionhead">
+      <h2 id="productHeading">محصولات پیشنهادی</h2>
+      <div class="toolbar">
+        <select id="categoryFilter" aria-label="فیلتر دسته‌بندی">
+          <option value="">همه دسته‌ها</option>
+        </select>
+        <select id="sortFilter" aria-label="مرتب‌سازی محصولات">
+          <option value="default">مرتب‌سازی</option>
+          <option value="low">ارزان‌ترین</option>
+          <option value="high">گران‌ترین</option>
+        </select>
+      </div>
+    </div>
+    <div class="products" id="productList"></div>
+  </section>
+</main>
+
+<footer id="about">
+  <h3>VERANO</h3>
+  <p>یک فروشگاه چنددسته‌ای با چشم‌انداز ارائه تجربه خرید آسان و متفاوت برای مشتریان ایرانی.</p>
+  <p id="contact">ارتباط با فروشگاه: اطلاعات تماس پس از تأیید مالک اضافه می‌شود.</p>
+  <div class="notice">نسخه اولیه نمایشی است؛ قیمت‌ها، موجودی و محصولات نمونه‌اند. ثبت سفارش و پرداخت واقعی هنوز فعال نیست.</div>
+</footer>
+
+<script>
+const categories = [
+ {id:"fashion",name:"پوشاک",emoji:"👕"},
+ {id:"shoes",name:"کفش",emoji:"👟"},
+ {id:"beauty",name:"لوازم آرایشی",emoji:"💄"},
+ {id:"care",name:"بهداشت و مراقبت",emoji:"🧴"},
+ {id:"coffee",name:"قهوه و دم‌آوری",emoji:"☕"},
+ {id:"digital",name:"موبایل و دیجیتال",emoji:"📱"},
+ {id:"computer",name:"کامپیوتر",emoji:"💻"},
+ {id:"bags",name:"کیف و اکسسوری",emoji:"👜"},
+ {id:"jewelry",name:"زیورآلات",emoji:"💍"},
+ {id:"home",name:"خانه و آشپزخانه",emoji:"🏠"},
+ {id:"food",name:"مواد غذایی",emoji:"🍎"},
+ {id:"kids",name:"کودک و اسباب‌بازی",emoji:"🧸"},
+ {id:"books",name:"کتاب و لوازم‌التحریر",emoji:"📚"},
+ {id:"sports",name:"لوازم ورزشی",emoji:"⚽"},
+ {id:"auto",name:"لوازم خودرو",emoji:"🚗"},
+ {id:"pets",name:"حیوانات خانگی",emoji:"🐾"},
+ {id:"gifts",name:"هدایا و متنوع",emoji:"🎁"}
+];
+
+
+const demoProducts = [
+ {id:-1,name:"تی‌شرت روزمره",desc:"نمونه نمایشی پوشاک",price:450000,old:0,stock:20,cat:"fashion",emoji:"👕",store_name:"نمونه نمایشی",isDemo:true},
+ {id:-2,name:"کفش اسپرت",desc:"نمونه نمایشی کفش",price:1250000,old:0,stock:20,cat:"shoes",emoji:"👟",store_name:"نمونه نمایشی",isDemo:true},
+ {id:-3,name:"رژ لب",desc:"نمونه نمایشی لوازم آرایشی",price:280000,old:0,stock:20,cat:"beauty",emoji:"💄",store_name:"نمونه نمایشی",isDemo:true},
+ {id:-4,name:"کرم مراقبت پوست",desc:"نمونه نمایشی مراقبت و بهداشت",price:390000,old:0,stock:20,cat:"care",emoji:"🧴",store_name:"نمونه نمایشی",isDemo:true},
+ {id:-5,name:"قهوه آسیاب‌شده",desc:"نمونه نمایشی قهوه",price:320000,old:0,stock:20,cat:"coffee",emoji:"☕",store_name:"نمونه نمایشی",isDemo:true},
+ {id:-6,name:"هدفون بی‌سیم",desc:"نمونه نمایشی کالای دیجیتال",price:890000,old:0,stock:20,cat:"digital",emoji:"🎧",store_name:"نمونه نمایشی",isDemo:true},
+ {id:-7,name:"صفحه‌کلید کامپیوتر",desc:"نمونه نمایشی تجهیزات کامپیوتر",price:650000,old:0,stock:20,cat:"computer",emoji:"⌨️",store_name:"نمونه نمایشی",isDemo:true},
+ {id:-8,name:"کیف روزمره",desc:"نمونه نمایشی کیف و اکسسوری",price:720000,old:0,stock:20,cat:"bags",emoji:"👜",store_name:"نمونه نمایشی",isDemo:true},
+ {id:-9,name:"دستبند تزئینی",desc:"نمونه نمایشی زیورآلات",price:190000,old:0,stock:20,cat:"jewelry",emoji:"💍",store_name:"نمونه نمایشی",isDemo:true},
+ {id:-10,name:"ماگ سرامیکی",desc:"نمونه نمایشی خانه و آشپزخانه",price:180000,old:0,stock:20,cat:"home",emoji:"☕",store_name:"نمونه نمایشی",isDemo:true},
+ {id:-11,name:"بسته خشکبار",desc:"نمونه نمایشی مواد غذایی",price:350000,old:0,stock:20,cat:"food",emoji:"🥜",store_name:"نمونه نمایشی",isDemo:true},
+ {id:-12,name:"اسباب‌بازی کودک",desc:"نمونه نمایشی محصولات کودک",price:420000,old:0,stock:20,cat:"kids",emoji:"🧸",store_name:"نمونه نمایشی",isDemo:true},
+ {id:-13,name:"دفتر یادداشت",desc:"نمونه نمایشی لوازم‌التحریر",price:95000,old:0,stock:20,cat:"books",emoji:"📚",store_name:"نمونه نمایشی",isDemo:true},
+ {id:-14,name:"توپ ورزشی",desc:"نمونه نمایشی لوازم ورزشی",price:480000,old:0,stock:20,cat:"sports",emoji:"⚽",store_name:"نمونه نمایشی",isDemo:true},
+ {id:-15,name:"نگهدارنده موبایل خودرو",desc:"نمونه نمایشی لوازم خودرو",price:220000,old:0,stock:20,cat:"auto",emoji:"🚗",store_name:"نمونه نمایشی",isDemo:true},
+ {id:-16,name:"ظرف غذای حیوانات",desc:"نمونه نمایشی محصولات حیوانات خانگی",price:160000,old:0,stock:20,cat:"pets",emoji:"🐾",store_name:"نمونه نمایشی",isDemo:true},
+ {id:-17,name:"جعبه هدیه",desc:"نمونه نمایشی هدایا",price:300000,old:0,stock:20,cat:"gifts",emoji:"🎁",store_name:"نمونه نمایشی",isDemo:true}
+];
+
+let products = [];
+
+
+const fa = n => Number(n).toLocaleString("fa-IR");
+const categoryName = id => categories.find(c=>c.id===id)?.name || "متنوع";
+let cart = {};
+try {
+ const savedCart = JSON.parse(localStorage.getItem("bazaz_cart") || "{}");
+ if (savedCart && typeof savedCart === "object" && !Array.isArray(savedCart)) {
+  for (const [id, qty] of Object.entries(savedCart)) {
+   if (products.some(p => p.id === Number(id)) &&
+       Number.isInteger(qty) && qty > 0 && qty < 1000) cart[id] = qty;
+  }
+ }
+} catch (_) { cart = {}; }
+let activeCategory = "";
+let searchTerm = "";
+
+function renderCategories() {
+ const list = document.getElementById("categoryList");
+ list.innerHTML = categories.map(c=>`
+ <button class="category" data-category="${c.id}">
+   <span class="emoji">${c.emoji}</span>
+   <strong>${c.name}</strong><small>مشاهده محصولات</small>
+ </button>`).join("");
+ list.querySelectorAll("[data-category]").forEach(el=>{
+  el.addEventListener("click",()=>selectCategory(el.dataset.category));
+ });
+ const filter = document.getElementById("categoryFilter");
+ filter.innerHTML = '<option value="">همه دسته‌ها</option>' +
+ categories.map(c=>`<option value="${c.id}">${c.name}</option>`).join("");
+}
+
+
+function escapeHTML(value) {
+ return String(value ?? "").replace(/[&<>"']/g, ch => ({
+  "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+ }[ch]));
+}
+
+function guessCategory(text) {
+ const value = String(text || "").toLowerCase();
+ const rules = [
+  ["shoes", /کفش|کتانی|پوتین/],
+  ["fashion", /پوشاک|لباس|تی.?شرت|شلوار|مانتو/],
+  ["beauty", /آرایش|رژ لب|ریمل/],
+  ["care", /بهداشت|مراقبت|کرم|شامپو/],
+  ["coffee", /قهوه|اسپرسو/],
+  ["digital", /موبایل|گوشی|هدفون|تبلت/],
+  ["computer", /کامپیوتر|لپ.?تاپ|کیبورد|ماوس/],
+  ["bags", /کیف|کوله/],
+  ["jewelry", /زیور|دستبند|گردنبند|انگشتر/],
+  ["home", /خانه|آشپزخانه|ماگ|ظرف/],
+  ["food", /غذا|خوراکی|خشکبار|مواد غذایی/],
+  ["kids", /کودک|اسباب.?بازی/],
+  ["books", /کتاب|دفتر|لوازم.?التحریر/],
+  ["sports", /ورزش|توپ|دمبل/],
+  ["auto", /خودرو|ماشین|موتور/],
+  ["pets", /حیوان|گربه|سگ/],
+  ["gifts", /هدیه|کادو/]
+ ];
+ for (const [id, regex] of rules) {
+  if (regex.test(value)) return id;
+ }
+ return "";
+}
+
+async function loadProducts() {
+ const list = document.getElementById("productList");
+ list.innerHTML = '<div class="empty">در حال دریافت محصولات فروشگاه...</div>';
+
+ try {
+  const response = await fetch("/api/public/products", {
+   method: "GET",
+   headers: {"Accept": "application/json"},
+   credentials: "same-origin"
+  });
+
+  if (!response.ok) throw new Error("HTTP " + response.status);
+
+  const data = await response.json();
+  if (!data || !Array.isArray(data.products)) {
+   throw new Error("پاسخ محصولات معتبر نیست");
+  }
+
+  products = data.products.map(p => {
+   const cat = guessCategory((p.name || "") + " " + (p.description || ""));
+   const category = categories.find(c => c.id === cat);
+   return {
+    id: Number(p.id),
+    name: String(p.name || ""),
+    desc: String(p.description || ""),
+    price: Number(p.price),
+    old: 0,
+    stock: Number(p.stock),
+    cat,
+    emoji: category ? category.emoji : "🛍️",
+    store_name: String(p.store_name || "")
+   };
+  }).filter(p =>
+   Number.isSafeInteger(p.id) && p.id > 0 &&
+   Number.isSafeInteger(p.price) && p.price >= 0 &&
+   Number.isSafeInteger(p.stock) && p.stock >= 0
+  );
+
+  // اگر فروشنده‌ای محصول فعال نداشته باشد، فقط کارت‌های نمونه نمایش داده می‌شوند.
+  if (products.length === 0) products = demoProducts;
+
+  // اقلام قدیمی سبد خرید که دیگر در فهرست عمومی نیستند حذف می‌شوند.
+  for (const id of Object.keys(cart)) {
+   if (!products.some(p => p.id === Number(id))) delete cart[id];
+  }
+
+  updateCart();
+  renderProducts();
+ } catch (error) {
+  console.error("خطا در دریافت محصولات VERANO:", error);
+  // در صورت قطعی API، صفحه خالی نمی‌ماند؛ این اقلام واقعی نیستند.
+  products = demoProducts;
+  updateCart();
+  renderProducts();
+ }
+}
+
+function renderProducts() {
+ let shown = products.filter(p =>
+  (!activeCategory || p.cat===activeCategory) &&
+  (!searchTerm || (p.name+" "+p.desc+" "+categoryName(p.cat)).toLowerCase().includes(searchTerm))
+ );
+ const sort = document.getElementById("sortFilter").value;
+ if(sort==="low") shown.sort((a,b)=>a.price-b.price);
+ if(sort==="high") shown.sort((a,b)=>b.price-a.price);
+ document.getElementById("productHeading").textContent =
+  activeCategory ? "محصولات «"+categoryName(activeCategory)+"»" :
+  searchTerm ? "نتایج جست‌وجو" : "محصولات پیشنهادی";
+ const list = document.getElementById("productList");
+ if(!shown.length) {
+  list.innerHTML='<div class="empty">فعلاً محصول فعالی برای نمایش وجود ندارد.</div>';
+  return;
+ }
+ list.innerHTML = shown.map(p=>`
+ <article class="product">
+  <div class="productvisual">${p.emoji}</div>
+  <div class="productbody">
+   <span class="badge">${p.isDemo ? "نمونه نمایشی · " : ""}${categoryName(p.cat)}</span>
+   <h3>${escapeHTML(p.name)}</h3>
+   <p>${escapeHTML(p.desc)}</p>
+   <small>${escapeHTML(p.store_name || "")}</small>
+   <div class="price">${fa(p.price)} تومان
+    ${p.old?`<span class="oldprice">${fa(p.old)}</span>`:""}
+   </div>
+   <button class="add" data-add="${p.id}">افزودن به سبد خرید</button>
+  </div>
+ </article>`).join("");
+ list.querySelectorAll("[data-add]").forEach(btn=>{
+  btn.addEventListener("click",()=>addToCart(Number(btn.dataset.add)));
+ });
+}
+
+function selectCategory(id) {
+ activeCategory = id;
+ searchTerm = "";
+ document.getElementById("searchInput").value = "";
+ document.getElementById("categoryFilter").value = id;
+ const c = categories.find(x=>x.id===id);
+ document.getElementById("adTitle").textContent = c ? "تبلیغات ویژه "+c.name : "تبلیغات ویژه فروشگاه";
+ document.getElementById("adText").textContent = c
+  ? "این جایگاه برای تبلیغ محصولات مرتبط با دسته «"+c.name+"» در نظر گرفته شده است. برای انتشار تبلیغ واقعی، پنل مدیریت لازم است."
+  : "جایگاه معرفی محصولات و پیشنهادهای ویژه فروشگاه.";
+ renderProducts();
+ document.getElementById("products").scrollIntoView({behavior:"smooth"});
+}
+
+function addToCart(id) {
+ const p = products.find(x => x.id === id);
+ if (!p) {
+  alert("این محصول دیگر در فهرست فروشگاه موجود نیست.");
+  return;
+ }
+ if (p.stock <= 0) {
+  alert("موجودی این محصول تمام شده است.");
+  return;
+ }
+ const currentQty = Number(cart[id]) || 0;
+ if (currentQty >= p.stock) {
+  alert("تعداد درخواستی از موجودی فعلی بیشتر است.");
+  return;
+ }
+ cart[id] = currentQty + 1;
+ updateCart();
+ alert(p.isDemo
+  ? "این محصول فقط نمونه نمایشی است؛ سفارش واقعی ثبت نمی‌شود."
+  : "«" + p.name + "» به سبد خرید نمایشی اضافه شد.");
+}
+
+function updateCart() {
+ const count = Object.values(cart).reduce((a,b)=>a+b,0);
+ document.getElementById("cartCount").textContent = fa(count);
+ try { localStorage.setItem("bazaz_cart", JSON.stringify(cart)); } catch (_) {}
+}
+
+document.getElementById("searchForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ searchTerm = document.getElementById("searchInput").value.trim().toLowerCase();
+ activeCategory = "";
+ document.getElementById("categoryFilter").value = "";
+ renderProducts();
+ document.getElementById("products").scrollIntoView({behavior:"smooth"});
+});
+document.getElementById("categoryFilter").addEventListener("change",e=>{
+ selectCategory(e.target.value);
+});
+document.getElementById("sortFilter").addEventListener("change",renderProducts);
+function showCart() {
+ const entries = Object.entries(cart);
+ const overlay = document.createElement("div");
+ overlay.id = "cartOverlay";
+ overlay.style.cssText = "position:fixed;inset:0;background:#0009;z-index:9999;display:flex;align-items:center;justify-content:center;padding:14px";
+ const box = document.createElement("div");
+ box.style.cssText = "background:#fffdf6;color:#173b2e;border-radius:18px;padding:20px;width:100%;max-width:520px;max-height:85vh;overflow:auto";
+ box.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><h2 style="margin:0">سبد خرید شما</h2><button id="closeCart" style="padding:8px 12px">بستن ✕</button></div><div id="cartItems" style="margin-top:16px"></div><div id="cartTotal" style="font-weight:bold;margin:16px 0"></div><p style="font-size:13px;color:#666">ثبت سفارش و پرداخت آنلاین هنوز فعال نشده است.</p>';
+ overlay.appendChild(box);
+ document.body.appendChild(overlay);
+
+ function drawItems() {
+  const area = box.querySelector("#cartItems");
+  const current = Object.entries(cart);
+  if (!current.length) {
+   area.innerHTML = '<p>سبد خرید خالی است.</p>';
+   box.querySelector("#cartTotal").textContent = "جمع کل: ۰ تومان";
+   return;
+  }
+  let total = 0;
+  area.innerHTML = current.map(([id, qty]) => {
+   const p = products.find(x => x.id === Number(id));
+   if (!p) return "";
+   total += p.price * qty;
+   return `<div style="border-bottom:1px solid #e5dfd0;padding:12px 0">
+    <strong>${p.emoji} ${escapeHTML(p.name)}</strong>
+    <div style="margin:8px 0">${fa(p.price)} تومان × ${fa(qty)}</div>
+    <button data-cart-action="minus" data-id="${id}">−</button>
+    <button data-cart-action="plus" data-id="${id}">+</button>
+    <button data-cart-action="remove" data-id="${id}">حذف کالا</button>
+   </div>`;
+  }).join("");
+  box.querySelector("#cartTotal").textContent = "جمع کل: " + fa(total) + " تومان";
+ }
+ drawItems();
+
+ box.querySelector("#closeCart").addEventListener("click", () => overlay.remove());
+ overlay.addEventListener("click", e => { if (e.target === overlay) overlay.remove(); });
+ box.querySelector("#cartItems").addEventListener("click", e => {
+  const btn = e.target.closest("[data-cart-action]");
+  if (!btn) return;
+  const id = btn.dataset.id;
+  const action = btn.dataset.cartAction;
+  if (action === "plus") {
+   const product = products.find(x => x.id === Number(id));
+   const qty = Number(cart[id]) || 0;
+   if (product && qty < product.stock) cart[id] = qty + 1;
+  }
+  if (action === "minus") {
+   cart[id] = (cart[id] || 0) - 1;
+   if (cart[id] <= 0) delete cart[id];
+  }
+  if (action === "remove") delete cart[id];
+  updateCart();
+  drawItems();
+ });
+}
+
+document.getElementById("cartButton").addEventListener("click", showCart);
+updateCart();
+renderCategories();
+loadProducts();
+</script>
+</body>
+</html>
