@@ -400,6 +400,7 @@ async function loadProducts() {
     stock: Number(p.stock),
     cat,
     emoji: category ? category.emoji : "🛍️",
+    image_url: String(p.image_url || p.image || p.image_path || p.photo || ""),
     store_name: String(p.store_name || "")
    };
   }).filter(p =>
@@ -445,7 +446,11 @@ function renderProducts() {
  }
  list.innerHTML = shown.map(p=>`
  <article class="product">
-  <div class="productvisual">${p.emoji}</div>
+  <div class="productvisual">
+   ${p.image_url && /^(https:\/\/|\/)/i.test(p.image_url)
+     ? `<img src="${escapeHTML(p.image_url)}" alt="${escapeHTML(p.name)}" loading="lazy" style="width:100%;height:100%;object-fit:cover" onerror="this.remove();this.parentElement.textContent='🛍️'">`
+     : p.emoji}
+  </div>
   <div class="productbody">
    <span class="badge">${p.isDemo ? "نمونه نمایشی · " : ""}${categoryName(p.cat)}</span>
    <h3>${escapeHTML(p.name)}</h3>
@@ -579,5 +584,8 @@ updateCart();
 renderCategories();
 loadProducts();
 </script>
+
+
+
 </body>
 </html>
